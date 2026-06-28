@@ -78,6 +78,7 @@
   .tag-pill.status-prospect { background: rgba(244,121,32,.15); color: var(--orange-deep); }
   .tag-pill.status-signed { background: rgba(76,175,80,.15); color: #2e7a32; }
   .tag-pill.status-live { background: rgba(76,175,80,.18); color: #2e7a32; }
+  .tag-pill.status-self { background: rgba(61,61,61,.12); color: var(--charcoal); border: 1px dashed var(--charcoal); }
   .audit-cta { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); padding: 10px 14px; border: 1.5px solid var(--orange); border-radius: 4px; white-space: nowrap; }
   .audit-card:hover .audit-cta { background: var(--orange); color: #fff; }
   @media (max-width: 640px) {
@@ -105,7 +106,7 @@
 
   <div class="summary">
     <div class="stat">
-      <div class="num">4</div>
+      <div class="num">5</div>
       <div class="lbl">Total Audits</div>
     </div>
     <div class="stat">
@@ -113,12 +114,12 @@
       <div class="lbl">Active Prospects</div>
     </div>
     <div class="stat">
-      <div class="num">0</div>
-      <div class="lbl">Signed</div>
+      <div class="num">1</div>
+      <div class="lbl">Self</div>
     </div>
     <div class="stat">
       <div class="num">0</div>
-      <div class="lbl">Live</div>
+      <div class="lbl">Signed</div>
     </div>
   </div>
 
@@ -171,6 +172,19 @@
         <div class="tags">
           <span class="tag-pill belt-brown">Brown Belt</span>
           <span class="tag-pill status-prospect">Prospect</span>
+        </div>
+      </div>
+      <span class="audit-cta">Open Report &rarr;</span>
+    </a>
+
+    <a class="audit-card" href="./ninja-360/">
+      <div class="audit-score yellow">71<span class="sub">B</span></div>
+      <div class="audit-body">
+        <h3 class="name">Ninja-360 Digital Media</h3>
+        <div class="meta">Local visibility agency &mdash; <em>cobbler scoring its own shoes</em> <span class="sep">·</span> Gladstone &amp; KC, MO <span class="sep">·</span> 4.9&starf; &times; ~10 reviews, schema + citation gaps <span class="sep">·</span> Audited 2026-06-19</div>
+        <div class="tags">
+          <span class="tag-pill belt-white">White Belt</span>
+          <span class="tag-pill status-self">Self &mdash; eat your own cooking</span>
         </div>
       </div>
       <span class="audit-cta">Open Report &rarr;</span>

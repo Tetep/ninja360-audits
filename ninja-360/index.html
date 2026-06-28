@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Ninja-360 — Visibility Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F47920; --deep:#E05F00; --charcoal:#3D3D3D; --gray:#404040;
+    --white:#FFFFFF; --warm:#F9F7F5; --border:#E0DCD8;
+    --red:#D94F4F; --yellow:#E8A630; --green:#4CAF50;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Source Sans 3',sans-serif;color:var(--charcoal);background:var(--white);line-height:1.6;}
+  .wrap{max-width:800px;margin:0 auto;}
+  .topbar{height:4px;background:var(--orange);width:100%;}
+  h1,h2,h3,.disp{font-family:'Barlow Condensed',sans-serif;letter-spacing:.4px;text-transform:uppercase;}
+  section{padding:54px 32px;border-bottom:1px solid var(--border);}
+  .alt{background:var(--warm);}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:2px;color:var(--orange);font-weight:600;font-size:15px;margin-bottom:8px;}
+  /* Section 1 */
+  .hero{text-align:center;padding-top:60px;}
+  .hero h1{font-size:46px;line-height:1;color:var(--charcoal);font-weight:700;}
+  .hero .sub{font-size:18px;color:var(--gray);margin-top:6px;}
+  .gauge{position:relative;width:230px;height:230px;margin:36px auto 10px;}
+  .gauge svg{transform:rotate(-90deg);}
+  .gauge .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);text-align:center;}
+  .gauge .num .big{font-family:'Barlow Condensed',sans-serif;font-size:78px;font-weight:700;color:var(--charcoal);line-height:.9;}
+  .gauge .num .den{font-size:16px;color:var(--gray);letter-spacing:1px;}
+  .grade{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:#fff;background:var(--green);padding:4px 22px;border-radius:30px;letter-spacing:2px;}
+  .verdict{font-size:20px;max-width:560px;margin:22px auto 0;color:var(--charcoal);font-weight:600;}
+  .meta{margin-top:22px;font-size:14px;color:var(--gray);letter-spacing:.5px;}
+  /* Scorecard */
+  .row{margin-bottom:20px;}
+  .row .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .row .lab .name{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;letter-spacing:.5px;}
+  .row .lab .sc{font-weight:700;font-size:15px;}
+  .row .lab .sc .tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:1px;margin-left:10px;padding:1px 9px;border-radius:4px;color:#fff;}
+  .bar{height:13px;background:#ECE8E4;border-radius:7px;overflow:hidden;}
+  .bar span{display:block;height:100%;border-radius:7px;}
+  .c-green{color:var(--green);} .bg-green{background:var(--green);}
+  .c-yellow{color:var(--yellow);} .bg-yellow{background:var(--yellow);}
+  .c-red{color:var(--red);} .bg-red{background:var(--red);}
+  /* Competitive */
+  .battle-h{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;color:var(--orange);margin:26px 0 12px;letter-spacing:.5px;}
+  table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:15px;}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--border);}
+  th{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:14px;color:var(--gray);font-weight:600;}
+  td.you{font-weight:700;color:var(--deep);}
+  .insight{background:#fff;border-left:4px solid var(--orange);padding:14px 18px;margin-top:14px;font-size:16px;}
+  .alt .insight{background:var(--warm);}
+  /* Gaps */
+  .gap{background:#fff;border:1px solid var(--border);border-left:5px solid var(--orange);border-radius:6px;padding:18px 22px;margin-bottom:16px;}
+  .gap .gh{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;}
+  .gap .gn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;color:var(--orange);line-height:1;}
+  .gap .gt{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:21px;letter-spacing:.5px;}
+  .gap .pts{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--red);background:#fbeaea;padding:2px 10px;border-radius:4px;white-space:nowrap;}
+  .gap .det{font-size:15px;color:var(--gray);}
+  .gap .det b{color:var(--charcoal);}
+  .plan{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;}
+  .step{flex:1;min-width:200px;background:#fff;border:1px solid var(--border);border-radius:6px;padding:18px;text-align:center;}
+  .alt .step{background:var(--warm);}
+  .step .sn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;color:var(--orange);}
+  .step .st{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px;letter-spacing:.5px;margin:4px 0;}
+  .step .sd{font-size:14px;color:var(--gray);}
+  .step.done{border-color:var(--green);}
+  .step.done .sn{color:var(--green);}
+  /* CTA */
+  .cta{background:var(--charcoal);color:#fff;text-align:center;border-bottom:none;}
+  .cta .eyebrow{color:var(--orange);}
+  .cta h2{color:#fff;font-size:34px;font-weight:700;margin-bottom:6px;}
+  .cta p{max-width:560px;margin:0 auto 26px;font-size:17px;color:#ECE8E4;}
+  .btn{display:inline-block;background:var(--deep);color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;letter-spacing:1px;text-transform:uppercase;padding:16px 42px;border-radius:8px;transition:background .2s;}
+  .btn:hover{background:var(--orange);}
+  .phone{margin-top:18px;font-size:16px;color:#ECE8E4;}
+  .phone b{color:#fff;}
+  .wordmark{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;letter-spacing:3px;color:var(--orange);margin-top:34px;}
+  .foot{font-size:13px;color:#A8A29D;margin-top:8px;}
+  @media (max-width:480px){
+    .hero h1{font-size:34px;} section{padding:40px 20px;}
+    .row .lab .name{font-size:17px;} .cta h2{font-size:27px;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="wrap">
+
+  <!-- SECTION 1: HEADLINE -->
+  <section class="hero">
+    <div class="eyebrow">Local Visibility Report</div>
+    <h1>Ninja-360 Digital Media</h1>
+    <div class="sub">Gladstone &amp; Kansas City, MO &nbsp;·&nbsp; Immersive Media + Local Visibility</div>
+
+    <div class="gauge">
+      <svg width="230" height="230" viewBox="0 0 230 230">
+        <circle cx="115" cy="115" r="100" fill="none" stroke="#ECE8E4" stroke-width="20"/>
+        <circle cx="115" cy="115" r="100" fill="none" stroke="#F47920" stroke-width="20"
+          stroke-linecap="round" stroke-dasharray="628.3" stroke-dashoffset="182.2"/>
+      </svg>
+      <div class="num"><div class="big">71</div><div class="den">OUT OF 100</div></div>
+    </div>
+    <div class="grade">GRADE&nbsp;B</div>
+    <p class="verdict">Strong business, elite visuals — your one real drag is review velocity. Fix that and you move from <em>good</em> to <em>untouchable</em>.</p>
+    <div class="meta">Audit date: June 19, 2026 &nbsp;·&nbsp; Prepared by Ninja-360 Digital Media</div>
+  </section>
+
+  <!-- SECTION 2: SCORECARD -->
+  <section class="alt">
+    <div class="eyebrow">The Scorecard</div>
+    <h2 style="font-size:28px;color:var(--charcoal);margin-bottom:6px;">Where you're strong. Where you're bleeding.</h2>
+    <p style="color:var(--gray);margin-bottom:28px;font-size:16px;">Six categories, 100 points. Green is a moat. Yellow is an easy win. Red is the money conversation.</p>
+
+    <div class="row">
+      <div class="lab"><span class="name">Photo &amp; Media</span><span class="sc c-green">14/15<span class="tag bg-green">Strong</span></span></div>
+      <div class="bar"><span class="bg-green" style="width:93%"></span></div>
+    </div>
+    <div class="row">
+      <div class="lab"><span class="name">GBP Completeness</span><span class="sc c-green">12/15<span class="tag bg-green">Strong</span></span></div>
+      <div class="bar"><span class="bg-green" style="width:80%"></span></div>
+    </div>
+    <div class="row">
+      <div class="lab"><span class="name">Video Presence</span><span class="sc c-yellow">11/15<span class="tag bg-yellow">Moderate</span></span></div>
+      <div class="bar"><span class="bg-yellow" style="width:73%"></span></div>
+    </div>
+    <div class="row">
+      <div class="lab"><span class="name">Website &amp; Local SEO</span><span class="sc c-yellow">18/25<span class="tag bg-yellow">Moderate</span></span></div>
+      <div class="bar"><span class="bg-yellow" style="width:72%"></span></div>
+    </div>
+    <div class="row">
+      <div class="lab"><span class="name">Local Listings</span><span class="sc c-yellow">10/15<span class="tag bg-yellow">Moderate</span></span></div>
+      <div class="bar"><span class="bg-yellow" style="width:67%"></span></div>
+    </div>
+    <div class="row">
+      <div class="lab"><span class="name">Review Strength</span><span class="sc c-red">6/15<span class="tag bg-red">Weak</span></span></div>
+      <div class="bar"><span class="bg-red" style="width:40%"></span></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: COMPETITIVE LANDSCAPE -->
+  <section>
+    <div class="eyebrow">The Competitive Landscape</div>
+    <h2 style="font-size:28px;color:var(--charcoal);">Who you're up against in Kansas City.</h2>
+
+    <div class="battle-h">Your Visibility Battle</div>
+    <p style="color:var(--gray);font-size:16px;">When a KC business searches "virtual tour" or "Google visibility," Google groups you with these names. Your media wins — their social proof is louder.</p>
+    <table>
+      <tr><th>Signal</th><th>Ninja-360</th><th>PositiveSpin 360</th></tr>
+      <tr><td>Google rating</td><td class="you">4.9★</td><td>Strong</td></tr>
+      <tr><td>Review count</td><td class="you">~10</td><td>Larger base</td></tr>
+      <tr><td>Tour views / reach</td><td class="you">10M+ photo views</td><td>~6.6M tour views</td></tr>
+      <tr><td>Certified Trusted Photographer</td><td class="you">Yes</td><td>Yes</td></tr>
+      <tr><td>360 / Matterport / drone</td><td class="you">Yes — full stack</td><td>Yes</td></tr>
+    </table>
+    <div class="insight">Your 4.9★ and 10M+ views prove the work is elite. But with only ~10 reviews, a stranger comparing you side-by-side sees a thinner trust signal than they should — that's a perception gap, not a quality gap.</div>
+
+    <div class="battle-h">Your Market Battle</div>
+    <p style="color:var(--gray);font-size:16px;">These compete for the same customer — a local business that wants to get found and chosen.</p>
+    <table>
+      <tr><th>Competitor</th><th>Their angle</th><th>Where you win</th></tr>
+      <tr><td>PositiveSpin 360</td><td>Award-winning VR + ROI dashboard</td><td>Recurring M.A.P. system</td></tr>
+      <tr><td>NUVO360</td><td>Matterport 3D depth</td><td>Drone + 360 + SEO bundle</td></tr>
+      <tr><td>Freelance Trusted Photographers</td><td>$200–500 one-off tours</td><td>Ongoing visibility, not a one-shot</td></tr>
+      <tr><td>Generic KC SEO agencies</td><td>"Get found" with no media</td><td>You own the visuals <em>and</em> the system</td></tr>
+    </table>
+    <div class="insight">Your real threat isn't quality — it's the cheap one-off tour. You beat it on the <b>system that keeps clients chosen</b>, so that story has to be loud everywhere customers look.</div>
+  </section>
+
+  <!-- SECTION 4: GAPS + PLAN -->
+  <section class="alt">
+    <div class="eyebrow">Your Top Visibility Gaps</div>
+    <h2 style="font-size:28px;color:var(--charcoal);margin-bottom:22px;">Three fixes, ranked by impact.</h2>
+
+    <div class="gap">
+      <div class="gh"><span class="gn">1</span><span class="gt">Review Velocity</span><span class="pts">~9 pts lost</span></div>
+      <div class="det"><b>Now:</b> ~10 Google reviews at a stellar 4.9★, but slow inflow and little recent momentum. &nbsp;<b>Benchmark:</b> direct competitors carry larger review bases and millions of public views. &nbsp;<b>Why it matters:</b> you sell visibility — your own review count should be the proof, not the gap.</div>
+    </div>
+
+    <div class="gap">
+      <div class="gh"><span class="gn">2</span><span class="gt">Citation &amp; Listings Cleanup</span><span class="pts">Moderate</span></div>
+      <div class="det"><b>Now:</b> GBP claimed and optimized; older directory listings may still reference the legacy <em>ninja-360.com</em> name/domain (the 301 redirect protects SEO, but citations should match). Apple Business Connect &amp; Bing presence unconfirmed. &nbsp;<b>Benchmark:</b> competitors maintain consistent NAP across Yelp, Apple, Bing. &nbsp;<b>Why it matters:</b> consistent citations feed Siri, Alexa, and AI search.</div>
+    </div>
+
+    <div class="gap">
+      <div class="gh"><span class="gn">3</span><span class="gt">Schema &amp; Technical SEO</span><span class="pts">~6 pts lost</span></div>
+      <div class="det"><b>Now:</b> no verified LocalBusiness, FAQ, or Speakable schema; media-heavy pages worth a mobile speed pass. &nbsp;<b>Benchmark:</b> structured data is what gets you quoted by Gemini, ChatGPT, and voice search. &nbsp;<b>Why it matters:</b> it's the difference between being found by people and being cited by AI.</div>
+    </div>
+
+    <div class="plan">
+      <div class="step done"><div class="sn">1</div><div class="st">Audit</div><div class="sd">We measure your visibility. ✓ Done — you're reading it.</div></div>
+      <div class="step"><div class="sn">2</div><div class="st">Reveal</div><div class="sd">We show exactly what's broken and what it's costing.</div></div>
+      <div class="step"><div class="sn">3</div><div class="st">Fix &amp; Lead</div><div class="sd">We close the gaps and keep you ahead, every month.</div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CTA -->
+  <section class="cta">
+    <div class="eyebrow">Your Recommended Path</div>
+    <h2>White Belt Visibility Program</h2>
+    <p>Your visuals already win the room — what you need is a review engine and a citation cleanup, not a rebuild. White Belt installs the GBP &amp; review momentum that turns your 4.9★ into undeniable proof, then layers in the listings and schema fixes that make you the obvious choice — for customers <em>and</em> for AI search.</p>
+    <a class="btn" href="https://links.ninja360.net/widget/booking/free-visibility-audit">Book Your Strategy Call</a>
+    <div class="phone">Or call <b>844-360-NINJA</b> &nbsp;(844-360-6465)</div>
+    <div class="wordmark">NINJA-360</div>
+    <div class="foot">© 2026 Ninja-360 Digital Media LLC &nbsp;|&nbsp; Kansas City, MO &nbsp;·&nbsp; Confidential visibility report — not for public indexing</div>
+  </section>
+
+</div>
+</body>
+</html>
