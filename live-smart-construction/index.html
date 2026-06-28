@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Live Smart Construction — Visibility Report | Ninja-360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F47920;
+    --deep-orange:#E05F00;
+    --charcoal:#3D3D3D;
+    --dark-gray:#404040;
+    --skin:#F5C5A3;
+    --warm-gray:#F9F7F5;
+    --border:#E0DCD8;
+    --red:#D94F4F;
+    --yellow:#E8A630;
+    --green:#4CAF50;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--charcoal);
+    background:#FFFFFF;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .topbar{height:4px;background:var(--orange);width:100%;}
+  .wrap{max-width:800px;margin:0 auto;padding:0 24px;}
+  h1,h2,h3,.display{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.5px;color:var(--charcoal);text-transform:uppercase;}
+  section{padding:56px 0;border-bottom:1px solid var(--border);}
+  section.alt{background:var(--warm-gray);}
+  .eyebrow{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:2px;color:var(--orange);text-transform:uppercase;font-size:14px;margin-bottom:10px;}
+  p{margin-bottom:14px;font-size:17px;}
+  .muted{color:#6f6a66;font-size:15px;}
+
+  /* HERO */
+  .hero{background:#FFFFFF;padding-top:48px;}
+  .hero h1{font-size:40px;line-height:1.05;margin-bottom:6px;}
+  .hero .sub{font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:1px;color:var(--dark-gray);font-size:20px;text-transform:uppercase;margin-bottom:30px;}
+  .gauge-row{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin:24px 0 18px;}
+  .gauge{position:relative;width:200px;height:200px;flex-shrink:0;}
+  .gauge svg{transform:rotate(-90deg);}
+  .gauge .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+  .gauge .num .big{font-family:'Oswald',sans-serif;font-weight:700;font-size:58px;line-height:1;color:var(--charcoal);}
+  .gauge .num .den{font-family:'Oswald',sans-serif;font-size:18px;color:#8a857f;letter-spacing:1px;}
+  .grade-block{flex:1;min-width:220px;}
+  .grade-pill{display:inline-block;font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;letter-spacing:1px;color:#fff;background:var(--orange);padding:6px 22px;border-radius:4px;text-transform:uppercase;margin-bottom:14px;}
+  .verdict{font-size:20px;font-weight:600;color:var(--charcoal);line-height:1.4;}
+  .meta-line{margin-top:22px;font-size:14px;color:#8a857f;letter-spacing:.5px;text-transform:uppercase;font-family:'Oswald',sans-serif;}
+  .partial-flag{margin-top:18px;background:#FDF1E7;border-left:4px solid var(--orange);padding:14px 18px;border-radius:0 4px 4px 0;font-size:14.5px;color:#7a5a3c;}
+
+  /* SCORECARD */
+  .bar-item{margin-bottom:22px;}
+  .bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+  .bar-name{font-family:'Oswald',sans-serif;font-weight:500;font-size:17px;letter-spacing:.5px;text-transform:uppercase;color:var(--charcoal);}
+  .bar-score{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;}
+  .bar-track{height:16px;background:#ECE8E4;border-radius:8px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:8px;}
+  .status-tag{font-size:12px;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase;padding:2px 9px;border-radius:3px;color:#fff;margin-left:10px;vertical-align:middle;}
+
+  /* COMPETITIVE */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:16px;}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border);}
+  th{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:14px;color:#fff;background:var(--charcoal);}
+  tr.you td{background:#FDF1E7;font-weight:600;}
+  .vs-head{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--orange);font-size:18px;margin:30px 0 6px;}
+  .insight{background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);padding:18px 20px;border-radius:0 4px 4px 0;font-size:16.5px;margin-top:14px;}
+  .insight.dark{background:var(--charcoal);color:#fff;border-color:var(--orange);border-left-color:var(--orange);}
+
+  /* GAPS */
+  .gap{background:#fff;border:1px solid var(--border);border-left:5px solid var(--orange);border-radius:0 6px 6px 0;padding:20px 22px;margin-bottom:18px;}
+  .gap-top{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+  .gap-num{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;color:var(--orange);line-height:1;}
+  .gap-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:.5px;text-transform:uppercase;color:var(--charcoal);}
+  .gap-pts{margin-left:auto;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:#fff;background:var(--deep-orange);padding:4px 12px;border-radius:4px;white-space:nowrap;}
+  .gap-grid{display:flex;gap:24px;flex-wrap:wrap;margin:6px 0 10px;}
+  .gap-col{flex:1;min-width:150px;}
+  .gap-col .lbl{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#8a857f;font-family:'Oswald',sans-serif;}
+  .gap-col .val{font-size:16px;font-weight:600;color:var(--charcoal);}
+  .gap-why{font-size:15.5px;color:#5c5752;font-style:italic;}
+
+  .plan{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px;}
+  .plan-step{flex:1;min-width:200px;background:#fff;border:1px solid var(--border);border-radius:6px;padding:22px;text-align:center;}
+  .plan-step .n{font-family:'Oswald',sans-serif;font-weight:700;font-size:24px;color:#fff;background:var(--orange);width:46px;height:46px;line-height:46px;border-radius:50%;margin:0 auto 12px;}
+  .plan-step.done .n{background:var(--green);}
+  .plan-step h3{font-size:17px;margin-bottom:6px;}
+  .plan-step p{font-size:14.5px;color:#6f6a66;margin:0;}
+
+  /* CTA */
+  .cta{background:var(--charcoal);color:#fff;border-bottom:none;text-align:center;}
+  .cta .eyebrow{color:var(--skin);}
+  .cta h2{color:#fff;font-size:32px;margin-bottom:14px;}
+  .cta p{color:#e6e2de;max-width:600px;margin:0 auto 14px;}
+  .belt-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+  .btn{display:inline-block;background:var(--deep-orange);color:#fff !important;font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:16px 44px;border-radius:6px;margin:22px 0 12px;transition:background .15s ease;}
+  .btn:hover{background:var(--orange);}
+  .call-line{font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:1px;color:#fff;}
+  .call-line a{color:var(--skin);text-decoration:none;}
+  .wordmark{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;letter-spacing:4px;color:#fff;margin-top:40px;}
+  .wordmark span{color:var(--orange);}
+  .foot{font-size:13px;color:#9a948e;margin-top:10px;letter-spacing:.5px;}
+
+  @media (max-width:600px){
+    .hero h1{font-size:30px;}
+    .gauge{width:160px;height:160px;}
+    section{padding:42px 0;}
+    .gap-pts{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+
+<!-- SECTION 1: HEADLINE -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Ninja-360 Visibility Report</div>
+    <h1>Live Smart Construction</h1>
+    <div class="sub">Net-Zero &amp; Solar &middot; Excelsior Springs / Greater Kansas City</div>
+
+    <div class="gauge-row">
+      <div class="gauge">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="86" fill="none" stroke="#ECE8E4" stroke-width="20"/>
+          <circle cx="100" cy="100" r="86" fill="none" stroke="#F47920" stroke-width="20"
+                  stroke-linecap="round"
+                  stroke-dasharray="540.4" stroke-dashoffset="291.8"/>
+        </svg>
+        <div class="num"><div class="big">46</div><div class="den">/ 100</div></div>
+      </div>
+      <div class="grade-block">
+        <div class="grade-pill">Grade D &mdash; Weak</div>
+        <div class="verdict">You have a 5.0&#9733; reputation almost nobody can find. Your visibility signals are being out-shouted by less-loved competitors.</div>
+      </div>
+    </div>
+
+    <div class="meta-line">Audit Date: June 23, 2026 &nbsp;&bull;&nbsp; Prepared by Ninja-360 Digital Media</div>
+
+    <div class="partial-flag">
+      <strong>Partial-data audit.</strong> Scores marked with the live Google Business Profile panel (hours, photo counts, review recency) and a PageSpeed run are estimated and noted below. A 60-second screenshot set firms them to exact figures &mdash; the headline picture does not change.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: SCORECARD -->
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow">The Scorecard</div>
+    <h2 style="font-size:28px;margin-bottom:6px;">Where You're Strong &mdash; And Where You're Bleeding</h2>
+    <p class="muted">Six categories. Two are foundations you can build on. Four are leaking customers right now.</p>
+
+    <div style="margin-top:28px;">
+      <!-- GBP -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">GBP Completeness <span class="status-tag" style="background:var(--yellow)">Moderate</span></span>
+          <span class="bar-score" style="color:var(--yellow)">~11 / 15</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:73%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- Reviews -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">Review Strength <span class="status-tag" style="background:var(--red)">Weak</span></span>
+          <span class="bar-score" style="color:var(--red)">~6 / 15</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--red)"></div></div>
+      </div>
+      <!-- Photo -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">Photo &amp; Media <span class="status-tag" style="background:var(--red)">Weak</span></span>
+          <span class="bar-score" style="color:var(--red)">~5 / 15</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--red)"></div></div>
+      </div>
+      <!-- Video -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">Video Presence <span class="status-tag" style="background:var(--yellow)">Moderate</span></span>
+          <span class="bar-score" style="color:var(--yellow)">~6 / 15</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- Listings -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">Local Listings <span class="status-tag" style="background:var(--red)">Weak</span></span>
+          <span class="bar-score" style="color:var(--red)">~5 / 15</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--red)"></div></div>
+      </div>
+      <!-- Website -->
+      <div class="bar-item">
+        <div class="bar-head">
+          <span class="bar-name">Website &amp; Local SEO <span class="status-tag" style="background:var(--yellow)">Moderate</span></span>
+          <span class="bar-score" style="color:var(--yellow)">~13 / 25</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:52%;background:var(--yellow)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: COMPETITIVE LANDSCAPE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The Competitive Landscape</div>
+    <h2 style="font-size:28px;">What Happens If Nothing Changes</h2>
+
+    <div class="vs-head">Your Visibility Battle</div>
+    <p class="muted">Who Google groups you with when someone searches "solar installer near me."</p>
+    <table>
+      <tr><th>Business</th><th>Rating</th><th>Review Volume</th><th>Signal Strength</th></tr>
+      <tr class="you"><td>Live Smart Construction</td><td>5.0&#9733;</td><td>~20</td><td>Thin</td></tr>
+      <tr><td>Shinnova Home + Solar</td><td>5.0&#9733;</td><td>High / "most reviewed"</td><td>Strong</td></tr>
+      <tr><td>Good Energy Solutions</td><td>High</td><td>Large volume</td><td>Strong</td></tr>
+      <tr><td>PennTech</td><td>5.0&#9733;</td><td>Established</td><td>Strong</td></tr>
+      <tr><td>Logic Solar</td><td>High</td><td>Established</td><td>Strong</td></tr>
+    </table>
+    <div class="insight">
+      Your 5.0&#9733; rating <em>matches</em> the field &mdash; your problem is signal <strong>volume</strong>. Competitors bring hundreds of reviews, optimized listings, and one consistent address. You bring 20 reviews and two conflicting addresses. Same stars, far weaker signals &mdash; so Google buries you even though customers love you.
+    </div>
+
+    <div class="vs-head">Your Market Battle</div>
+    <p class="muted">Who you're actually competing with for the premium, whole-home buyer.</p>
+    <table>
+      <tr><th>Business</th><th>Differentiator</th></tr>
+      <tr class="you"><td>Live Smart Construction</td><td>Veteran-owned, no-commission, net-zero builder</td></tr>
+      <tr><td>Shinnova Home + Solar</td><td>Holistic home + solar (closest true comp)</td></tr>
+      <tr><td>Good Energy Solutions</td><td>Solar + storage + electricians</td></tr>
+      <tr><td>Logic Solar</td><td>Longevity + industry awards</td></tr>
+    </table>
+    <div class="insight dark">
+      Your veteran-owned, no-commission, net-zero-builder story is something Shinnova and Good Energy <strong>cannot claim</strong> &mdash; but it's invisible. It's buried in body copy, not in your GBP description, title tags, or review flow. You're winning the customers who find you and losing the ones who never do.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GAPS + PLAN -->
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow">The Path Forward</div>
+    <h2 style="font-size:28px;margin-bottom:24px;">Your Top Visibility Gaps</h2>
+
+    <div class="gap">
+      <div class="gap-top">
+        <span class="gap-num">1</span>
+        <span class="gap-title">NAP Inconsistency</span>
+        <span class="gap-pts">Ranking Drag</span>
+      </div>
+      <div class="gap-grid">
+        <div class="gap-col"><div class="lbl">What You Have</div><div class="val">2 addresses, 2 phone numbers across the web</div></div>
+        <div class="gap-col"><div class="lbl">What Competitors Have</div><div class="val">One consistent NAP everywhere</div></div>
+      </div>
+      <div class="gap-why">Conflicting name/address/phone confuses Google and every voice &amp; AI assistant &mdash; highest impact, lowest effort to fix.</div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top">
+        <span class="gap-num">2</span>
+        <span class="gap-title">Review Volume &amp; Velocity</span>
+        <span class="gap-pts">~7 pts lost</span>
+      </div>
+      <div class="gap-grid">
+        <div class="gap-col"><div class="lbl">What You Have</div><div class="val">5.0&#9733; but only ~20 reviews, no momentum</div></div>
+        <div class="gap-col"><div class="lbl">What Competitors Have</div><div class="val">Hundreds of reviews, steady velocity</div></div>
+      </div>
+      <div class="gap-why">A perfect rating on thin volume reads as "new" to Google &mdash; a review engine turns happy customers into ranking fuel.</div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-top">
+        <span class="gap-num">3</span>
+        <span class="gap-title">No 360 Tour + Stale Media</span>
+        <span class="gap-pts">~8 pts lost</span>
+      </div>
+      <div class="gap-grid">
+        <div class="gap-col"><div class="lbl">What You Have</div><div class="val">No virtual tour; presence frozen since 2021</div></div>
+        <div class="gap-col"><div class="lbl">What Competitors Have</div><div class="val">Fresh photo sets and active media</div></div>
+      </div>
+      <div class="gap-why">360 tours and fresh media are the single biggest engagement signal Google rewards &mdash; and exactly what Ninja-360 captures.</div>
+    </div>
+
+    <h2 style="font-size:24px;margin-top:40px;">The Plan</h2>
+    <div class="plan">
+      <div class="plan-step done">
+        <div class="n">&#10003;</div>
+        <h3>1. We Audit</h3>
+        <p>Your visibility is scored across 6 categories. Done &mdash; you're reading it.</p>
+      </div>
+      <div class="plan-step">
+        <div class="n">2</div>
+        <h3>2. We Show What's Broken</h3>
+        <p>The exact gaps costing you customers, ranked by impact. This report.</p>
+      </div>
+      <div class="plan-step">
+        <div class="n">3</div>
+        <h3>3. We Fix &amp; Keep You Ahead</h3>
+        <p>Media capture, listings cleanup, and ongoing monthly visibility work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="eyebrow">Your Next Step</div>
+    <h2>Recommended For You</h2>
+    <div class="belt-name">Brown Belt Visibility Program</div>
+    <p>Your foundation is real &mdash; a working site, a 5.0&#9733; reputation, and a story competitors can't copy. The Brown Belt closes your review, listings, and media gaps with a full NAP cleanup, professional 360 + photo capture, GBP and listings optimization, and a review engine that keeps you climbing.</p>
+    <a class="btn" href="https://links.ninja360.net/widget/booking/free-visibility-audit">Book Your Strategy Call</a>
+    <div class="call-line">Or call <a href="tel:+18443606465">844-360-NINJA</a> (844-360-6465)</div>
+    <div class="wordmark">NINJA<span>-360</span></div>
+    <div class="foot">&copy; 2026 Ninja-360 Digital Media LLC &nbsp;|&nbsp; Kansas City, MO</div>
+  </div>
+</section>
+
+</body>
+</html>
