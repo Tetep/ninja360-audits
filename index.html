@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ninja-360 Audits — Internal Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #F47920;
+    --orange-deep: #E05F00;
+    --gray: #404040;
+    --charcoal: #3D3D3D;
+    --bg: #FFFFFF;
+    --bg-soft: #F9F7F5;
+    --border: #E0DCD8;
+    --red: #D94F4F;
+    --yellow: #E8A630;
+    --green: #4CAF50;
+    --display: 'Oswald', sans-serif;
+    --body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--gray); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body::before { content: ""; display: block; height: 4px; background: var(--orange); }
+  a { color: var(--orange-deep); text-decoration: none; }
+  a:hover { color: var(--orange); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* MASTHEAD */
+  header.head { padding: 42px 0 30px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+  .wordmark { font-family: var(--display); font-weight: 700; font-size: 28px; letter-spacing: 0.06em; color: var(--charcoal); margin: 0 0 4px; }
+  .wordmark .n { color: var(--orange); }
+  .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin: 0 0 18px; }
+  h1.title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 4vw, 40px); color: var(--charcoal); letter-spacing: -0.005em; margin: 0 0 8px; text-transform: uppercase; }
+  .subtitle { font-size: 16px; color: var(--gray); margin: 0; max-width: 640px; }
+  .private-flag { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 6px 14px; background: rgba(217,79,79,.1); color: var(--red); border-radius: 4px; font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  .private-flag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+  /* FILTERS / COUNTER (future use) */
+  .summary { display: flex; flex-wrap: wrap; gap: 32px; padding: 22px 26px; background: var(--bg-soft); border-radius: 6px; margin-bottom: 36px; }
+  .stat .num { font-family: var(--display); font-weight: 700; font-size: 32px; color: var(--charcoal); line-height: 1; }
+  .stat .lbl { font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+
+  /* AUDIT LIST */
+  .audits { display: flex; flex-direction: column; gap: 16px; }
+  .audit-card {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 22px;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--orange);
+    border-radius: 6px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .15s, transform .15s, border-color .15s;
+  }
+  .audit-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.06); transform: translateY(-1px); border-left-color: var(--orange-deep); color: inherit; }
+  .audit-score { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1; text-align: center; padding: 14px 8px; border-radius: 6px; color: #fff; }
+  .audit-score.red { background: var(--red); }
+  .audit-score.yellow { background: var(--yellow); color: var(--charcoal); }
+  .audit-score.green { background: var(--green); }
+  .audit-score .sub { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; margin-top: 3px; opacity: .9; }
+  .audit-body .name { font-family: var(--display); font-weight: 600; font-size: 20px; color: var(--charcoal); margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.005em; }
+  .audit-body .meta { font-size: 13.5px; color: var(--gray); }
+  .audit-body .meta .sep { color: var(--border); margin: 0 8px; }
+  .audit-body .tags { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag-pill { display: inline-block; padding: 2px 8px; border-radius: 3px; font-family: var(--display); font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .tag-pill.belt-black { background: var(--charcoal); color: #fff; }
+  .tag-pill.belt-brown { background: #6e4a2a; color: #fff; }
+  .tag-pill.belt-white { background: #efe7dc; color: var(--charcoal); }
+  .tag-pill.status-prospect { background: rgba(244,121,32,.15); color: var(--orange-deep); }
+  .tag-pill.status-signed { background: rgba(76,175,80,.15); color: #2e7a32; }
+  .tag-pill.status-live { background: rgba(76,175,80,.18); color: #2e7a32; }
+  .audit-cta { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); padding: 10px 14px; border: 1.5px solid var(--orange); border-radius: 4px; white-space: nowrap; }
+  .audit-card:hover .audit-cta { background: var(--orange); color: #fff; }
+  @media (max-width: 640px) {
+    .audit-card { grid-template-columns: 56px 1fr; }
+    .audit-cta { grid-column: 1 / -1; text-align: center; }
+  }
+
+  /* FOOTER */
+  footer.foot { margin-top: 60px; padding: 30px 0 50px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--gray); }
+  footer.foot .legal { margin: 0; }
+  footer.foot code { font-family: ui-monospace, Menlo, monospace; background: var(--bg-soft); padding: 1px 6px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="head">
+    <p class="wordmark"><span class="n">N</span>INJA-360</p>
+    <p class="tag">VISIBILITY AUDIT ARCHIVE</p>
+    <h1 class="title">Internal Audit Library</h1>
+    <p class="subtitle">Every prospect audit Ninja-360 has produced. Findable fast, internal only. Each card links to that prospect's full diagnostic report.</p>
+    <span class="private-flag">Private · Not for public distribution</span>
+  </header>
+
+  <div class="summary">
+    <div class="stat">
+      <div class="num">1</div>
+      <div class="lbl">Total Audits</div>
+    </div>
+    <div class="stat">
+      <div class="num">1</div>
+      <div class="lbl">Active Prospects</div>
+    </div>
+    <div class="stat">
+      <div class="num">0</div>
+      <div class="lbl">Signed</div>
+    </div>
+    <div class="stat">
+      <div class="num">0</div>
+      <div class="lbl">Live</div>
+    </div>
+  </div>
+
+  <div class="audits">
+
+    <a class="audit-card" href="./free-flowin-libations/">
+      <div class="audit-score red">25<span class="sub">F</span></div>
+      <div class="audit-body">
+        <h3 class="name">Free Flowin&rsquo; Libations</h3>
+        <div class="meta">Tanner Minyard <span class="sep">·</span> Mobile bartending + event coordination <span class="sep">·</span> Kansas City Metro <span class="sep">·</span> Audited 2026-06-10</div>
+        <div class="tags">
+          <span class="tag-pill belt-black">Black Belt</span>
+          <span class="tag-pill status-prospect">Prospect</span>
+        </div>
+      </div>
+      <span class="audit-cta">Open Report &rarr;</span>
+    </a>
+
+    <!--
+      To add a new audit, copy the block above and update:
+      - href: ./{client-slug}/
+      - audit-score class: red (<50) / yellow (50-79) / green (80+)
+      - score number + grade letter
+      - business name (use &rsquo; for apostrophes)
+      - meta line: owner / category / location / audited YYYY-MM-DD
+      - tag-pill classes: belt-{black|brown|white} + status-{prospect|signed|live}
+    -->
+
+  </div>
+
+  <footer class="foot">
+    <p class="legal">&copy; 2026 Ninja-360 Digital Media LLC &middot; Kansas City, MO &middot; <code>audits.ninja360.net</code> &middot; Internal archive &mdash; do not distribute</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Visibility Report — Free Flowin' Libations | Ninja-360</title>
+<meta name="description" content="Visibility audit and competitive analysis for Free Flowin' Libations, Kansas City. Internal Ninja-360 report.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #F47920;
+    --orange-deep: #E05F00;
+    --gray: #404040;
+    --charcoal: #3D3D3D;
+    --skin: #F5C5A3;
+    --bg: #FFFFFF;
+    --bg-soft: #F9F7F5;
+    --border: #E0DCD8;
+    --red: #D94F4F;
+    --yellow: #E8A630;
+    --green: #4CAF50;
+    --display: 'Oswald', 'Arial Narrow', sans-serif;
+    --body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--gray);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: var(--orange);
+  }
+  a { color: var(--orange-deep); }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 28px; }
+
+  /* HEADER BAR */
+  .doc-mark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--orange);
+    text-transform: uppercase;
+    padding: 22px 0 10px;
+  }
+  .doc-mark .sep { color: var(--border); margin: 0 10px; }
+  .doc-mark .scope { color: var(--gray); font-weight: 500; letter-spacing: 0.14em; }
+
+  /* SECTION 1 — HEADLINE */
+  .sec-1 { padding: 30px 0 70px; text-align: center; }
+  .biz-tag {
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin: 0 0 14px;
+  }
+  .biz-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(36px, 5.5vw, 58px);
+    color: var(--charcoal);
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+  }
+  .biz-sub {
+    font-size: 17px;
+    color: var(--gray);
+    margin: 0 0 38px;
+  }
+  .gauge {
+    display: inline-block;
+    position: relative;
+    width: 240px; height: 240px;
+    margin: 0 auto;
+  }
+  .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .gauge circle { fill: none; stroke-width: 16; }
+  .gauge .track { stroke: var(--border); }
+  .gauge .fill { stroke: var(--red); stroke-linecap: round; }
+  .gauge .num {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .gauge .num .big {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 86px;
+    color: var(--charcoal);
+    line-height: 0.95;
+  }
+  .gauge .num .out { font-size: 14px; color: var(--gray); letter-spacing: 0.08em; }
+  .grade-row {
+    margin: 36px auto 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 28px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 6px;
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  .grade-row .letter { font-size: 28px; padding-right: 16px; border-right: 2px solid rgba(255,255,255,.32); }
+  .verdict {
+    max-width: 580px;
+    margin: 28px auto 0;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--charcoal);
+  }
+  .audit-meta {
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--gray);
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .audit-meta strong { color: var(--charcoal); }
+
+  /* SECTION CHROME */
+  section.major { padding: 64px 0; }
+  section.major.alt { background: var(--bg-soft); }
+  .sec-eyebrow {
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  .sec-h {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 38px);
+    color: var(--charcoal);
+    letter-spacing: -0.005em;
+    margin: 0 0 18px;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .sec-lede {
+    font-size: 17px;
+    color: var(--gray);
+    margin: 0 0 36px;
+    max-width: 620px;
+  }
+
+  /* SECTION 2 — SCORECARD */
+  .scores { display: flex; flex-direction: column; gap: 18px; }
+  .score-row .top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .score-row .name {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--charcoal);
+  }
+  .score-row .val {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--charcoal);
+  }
+  .score-row .val .pts { color: var(--gray); font-weight: 500; }
+  .bar {
+    height: 14px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar .fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width .3s;
+  }
+  .bar .fill.red { background: var(--red); }
+  .bar .fill.yellow { background: var(--yellow); }
+  .bar .fill.green { background: var(--green); }
+  .score-row .status {
+    margin-top: 5px;
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .score-row .status .badge {
+    display: inline-block;
+    font-family: var(--display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+  }
+  .badge.crit { background: var(--red); color: #fff; }
+  .badge.weak { background: var(--yellow); color: var(--charcoal); }
+  .badge.mod { background: var(--yellow); color: var(--charcoal); }
+  .badge.strong { background: var(--green); color: #fff; }
+
+  /* SECTION 3 — COMPETITIVE */
+  .battle {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .battle h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin: 0 0 8px;
+  }
+  .battle .b-sub {
+    font-size: 15px;
+    color: var(--gray);
+    margin: 0 0 22px;
+  }
+  table.comp { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.comp th, table.comp td {
+    text-align: left; padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  table.comp th {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border-bottom: 2px solid var(--charcoal);
+  }
+  table.comp tr.you td { background: rgba(244,121,32,.06); font-weight: 600; }
+  table.comp tr.you td:first-child { border-left: 3px solid var(--orange); }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill.bad { background: rgba(217,79,79,.12); color: var(--red); }
+  .pill.warn { background: rgba(232,166,48,.16); color: #a06d0a; }
+  .pill.good { background: rgba(76,175,80,.12); color: #2e7a32; }
+  .insight {
+    background: var(--bg-soft);
+    border-left: 4px solid var(--orange);
+    padding: 18px 22px;
+    margin-top: 22px;
+    font-size: 15px;
+    color: var(--charcoal);
+    font-style: italic;
+  }
+  .insight strong { font-style: normal; font-weight: 700; }
+
+  /* SECTION 4 — GAPS + PLAN */
+  .gap {
+    border-left: 4px solid var(--orange);
+    background: #fff;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .gap .num {
+    display: inline-block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+    margin: 0 0 4px;
+  }
+  .gap h4 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--charcoal);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .gap .gap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 22px;
+    margin: 12px 0 14px;
+    font-size: 14px;
+  }
+  .gap .gap-grid .lbl {
+    display: block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 3px;
+  }
+  .gap .gap-grid .val { color: var(--charcoal); }
+  .gap .why { font-size: 15px; color: var(--charcoal); margin: 0; }
+  .gap .why strong { color: var(--red); font-weight: 700; }
+  @media (max-width: 540px) { .gap .gap-grid { grid-template-columns: 1fr; } }
+
+  .plan {
+    margin-top: 44px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .plan h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin: 0 0 22px;
+  }
+  .plan-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 640px) { .plan-steps { grid-template-columns: 1fr; } }
+  .plan-step {
+    text-align: center;
+    padding: 18px 14px;
+    background: var(--bg-soft);
+    border-radius: 6px;
+  }
+  .plan-step .step-num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .plan-step .step-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .plan-step .step-desc { font-size: 13px; color: var(--gray); margin: 0; }
+  .plan-step.done { background: rgba(76,175,80,.08); }
+  .plan-step.done .step-num { color: var(--green); }
+  .plan-step.now { background: rgba(244,121,32,.1); }
+
+  /* SECTION 5 — CTA */
+  .cta-block {
+    background: var(--charcoal);
+    color: #fff;
+    padding: 60px 28px;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .cta-block::before {
+    content: "";
+    display: block;
+    width: 60px; height: 3px;
+    background: var(--orange);
+    margin: 0 auto 24px;
+  }
+  .cta-eyebrow {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  .cta-belt {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 4.5vw, 42px);
+    color: #fff;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    line-height: 1.1;
+  }
+  .cta-desc {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    font-size: 16px;
+    color: #e0dcd8;
+    line-height: 1.6;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--orange-deep);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 38px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background .15s, transform .15s;
+  }
+  .cta-btn:hover { background: var(--orange); transform: translateY(-2px); color: #fff; }
+  .cta-phone {
+    margin-top: 22px;
+    font-size: 15px;
+    color: #e0dcd8;
+  }
+  .cta-phone a { color: #fff; font-weight: 600; }
+
+  /* FOOTER */
+  footer.report-foot {
+    background: #2a2a2a;
+    color: #b9b5af;
+    padding: 28px 0 36px;
+    text-align: center;
+    font-size: 12px;
+  }
+  footer.report-foot .wordmark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin: 0 0 6px;
+  }
+  footer.report-foot .wordmark .n { color: var(--orange); }
+  footer.report-foot .tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin: 0 0 14px; }
+  footer.report-foot .legal { color: #82807d; }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 12px; }
+    .wrap { max-width: none; padding: 0 24px; }
+    section.major { padding: 30px 0; page-break-inside: avoid; }
+    .cta-block { background: var(--bg-soft) !important; color: var(--charcoal) !important; }
+    .cta-belt, .cta-eyebrow, .cta-desc, .cta-phone { color: var(--charcoal) !important; }
+    .cta-phone a { color: var(--charcoal) !important; }
+    .cta-btn { background: var(--orange) !important; color: #fff !important; }
+    footer.report-foot { background: #fff !important; color: var(--gray) !important; border-top: 1px solid var(--border); }
+    footer.report-foot .wordmark { color: var(--charcoal) !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <p class="doc-mark">NINJA-360 <span class="sep">·</span> <span class="scope">Visibility Report</span></p>
+</div>
+
+<!-- SECTION 1 — HEADLINE -->
+<div class="wrap">
+  <section class="sec-1">
+    <p class="biz-tag">Prepared for</p>
+    <h1 class="biz-name">Free Flowin' Libations</h1>
+    <p class="biz-sub">Tanner Minyard · Premium private bartending + event coordination · Kansas City Metro</p>
+
+    <div class="gauge">
+      <svg viewBox="0 0 200 200">
+        <circle class="track" cx="100" cy="100" r="86" stroke-dasharray="540" stroke-dashoffset="0"/>
+        <circle class="fill" cx="100" cy="100" r="86" stroke-dasharray="540" stroke-dashoffset="405" />
+      </svg>
+      <div class="num">
+        <div class="big">25</div>
+        <div class="out">OUT OF 100</div>
+      </div>
+    </div>
+
+    <div class="grade-row"><span class="letter">F</span><span>Critical Visibility</span></div>
+
+    <p class="verdict">"Your great work is invisible. Outside your own website, customers can't find you — and competitors who do worse work are winning the bookings."</p>
+
+    <div class="audit-meta">
+      <span><strong>Audit date:</strong> June 10, 2026</span>
+      <span><strong>Source URL:</strong> freeflowinlibations.com</span>
+      <span><strong>Scope:</strong> Full diagnostic</span>
+    </div>
+  </section>
+</div>
+
+<!-- SECTION 2 — SCORECARD -->
+<section class="major alt">
+  <div class="wrap">
+    <p class="sec-eyebrow">The Scorecard</p>
+    <h2 class="sec-h">Where you're strong &mdash; and where you're bleeding</h2>
+    <p class="sec-lede">Six categories. Each one a battle for customer attention. The red bars are where every prospect Google sends elsewhere right now.</p>
+
+    <div class="scores">
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Google Business Profile</span>
+          <span class="val">0 <span class="pts">/ 15</span></span>
+        </div>
+        <div class="bar"><div class="fill red" style="width: 0%;"></div></div>
+        <div class="status"><span class="badge crit">Critical</span>No findable listing — customers searching Maps can't see you at all</div>
+      </div>
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Review Strength</span>
+          <span class="val">2 <span class="pts">/ 15</span></span>
+        </div>
+        <div class="bar"><div class="fill red" style="width: 13%;"></div></div>
+        <div class="status"><span class="badge crit">Critical</span>Three real on-site testimonials &mdash; but zero Google reviews to back them up</div>
+      </div>
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Photo &amp; Media Presence</span>
+          <span class="val">4 <span class="pts">/ 15</span></span>
+        </div>
+        <div class="bar"><div class="fill red" style="width: 27%;"></div></div>
+        <div class="status"><span class="badge crit">Critical</span>Website photos exist, but no public photo library, no 360 tour, no recent uploads</div>
+      </div>
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Video Presence</span>
+          <span class="val">0 <span class="pts">/ 15</span></span>
+        </div>
+        <div class="bar"><div class="fill red" style="width: 0%;"></div></div>
+        <div class="status"><span class="badge crit">Critical</span>No GBP video, no YouTube, no social Reels &mdash; for a SHOWING business, this is the biggest miss</div>
+      </div>
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Local Listings &amp; Citations</span>
+          <span class="val">0 <span class="pts">/ 15</span></span>
+        </div>
+        <div class="bar"><div class="fill red" style="width: 0%;"></div></div>
+        <div class="status"><span class="badge crit">Critical</span>Not on Yelp, Apple Business, Bing, or Facebook &mdash; invisible to Siri, Alexa, and AI search</div>
+      </div>
+
+      <div class="score-row">
+        <div class="top">
+          <span class="name">Website &amp; SEO</span>
+          <span class="val">18 <span class="pts">/ 25</span></span>
+        </div>
+        <div class="bar"><div class="fill yellow" style="width: 72%;"></div></div>
+        <div class="status"><span class="badge mod">Moderate</span>Site is clean, mobile-friendly, and HTTPS &mdash; but missing all structured data (LocalBusiness / Review / Speakable schema)</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — COMPETITIVE -->
+<section class="major">
+  <div class="wrap">
+    <p class="sec-eyebrow">The Competitive Landscape</p>
+    <h2 class="sec-h">Two battles. Right now, you're losing both.</h2>
+
+    <div class="battle">
+      <h3>The Visibility Battle</h3>
+      <p class="b-sub">When someone in Kansas City Googles "mobile bartender" or "wedding bartender KC," <strong>this is who appears.</strong></p>
+      <table class="comp">
+        <thead>
+          <tr><th>Business</th><th>Google Presence</th><th>Other Channels</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vibes &amp; Libations</td><td><span class="pill warn">Listed</span></td><td>Yelp · Facebook</td></tr>
+          <tr><td>Libations &amp; Company</td><td><span class="pill good">Strong</span></td><td>Yelp (55 reviews) · website</td></tr>
+          <tr><td>Wild Child Libations</td><td><span class="pill warn">Listed</span></td><td>Facebook</td></tr>
+          <tr class="you"><td>Free Flowin' Libations</td><td><span class="pill bad">Not findable</span></td><td>Website only</td></tr>
+        </tbody>
+      </table>
+      <p class="insight"><strong>Translation:</strong> Customers searching right now don't choose between you and competitors &mdash; <em>they don't see you at all.</em> Every wedding-bartender search in KC right now goes to one of three competitors who appear in Maps.</p>
+    </div>
+
+    <div class="battle">
+      <h3>The Market Battle</h3>
+      <p class="b-sub">These are the businesses competing for the same customer &mdash; KC hosts planning weddings, milestones, premium corporate events.</p>
+      <table class="comp">
+        <thead>
+          <tr><th>Business</th><th>Differentiator</th><th>Edge</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vibes &amp; Libations</td><td>Mobile bar setup</td><td>Found on Google · Has reviews</td></tr>
+          <tr><td>Wild Child Libations</td><td>Suburban event focus</td><td>Found on Google · Has reviews</td></tr>
+          <tr><td>Independent wedding planners</td><td>Coordination first, bar secondary</td><td>Often package bar as add-on</td></tr>
+          <tr class="you"><td>Free Flowin' Libations</td><td><strong>Bar AND day-of coordination &mdash; one person</strong></td><td><span class="pill bad">Story is untold</span></td></tr>
+        </tbody>
+      </table>
+      <p class="insight"><strong>Translation:</strong> Your actual edge &mdash; the only person in KC who runs the bar AND owns the day-of timeline &mdash; is <em>your strongest selling point and your most invisible one.</em> Nobody knows because it's not surfaced anywhere customers search.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — GAPS + PLAN -->
+<section class="major alt">
+  <div class="wrap">
+    <p class="sec-eyebrow">Your Top Visibility Gaps</p>
+    <h2 class="sec-h">The three gaps costing you the most bookings</h2>
+    <p class="sec-lede">Every wedding-bartender search in KC right now is going to a competitor &mdash; not because they're better, but because of these three specific gaps.</p>
+
+    <div class="gap">
+      <span class="num">GAP 01</span>
+      <h4>No Google Business Profile</h4>
+      <div class="gap-grid">
+        <div><span class="lbl">What you have</span><span class="val">No findable listing on Google Maps</span></div>
+        <div><span class="lbl">What competitors have</span><span class="val">Verified GBP with photos, hours, reviews</span></div>
+      </div>
+      <p class="why"><strong>Why it matters:</strong> ~70% of local discovery starts with a Google Maps search. No GBP means you are invisible to every customer searching "near me," every voice-assistant query, and every AI assistant pulling local recommendations.</p>
+    </div>
+
+    <div class="gap">
+      <span class="num">GAP 02</span>
+      <h4>Zero Local Listings &mdash; Anywhere</h4>
+      <div class="gap-grid">
+        <div><span class="lbl">What you have</span><span class="val">No findable presence on Yelp, Apple Business Connect, Bing Places, or Facebook Business</span></div>
+        <div><span class="lbl">What competitors have</span><span class="val">Vibes &amp; Libations: Yelp + Facebook. Libations &amp; Co.: 55 Yelp reviews</span></div>
+      </div>
+      <p class="why"><strong>Why it matters:</strong> Siri pulls from Apple Business + Yelp. Alexa pulls from Yelp + Bing. ChatGPT pulls 49% of local citations from Yelp, TripAdvisor, and directories. <strong>You don't exist on any of them.</strong></p>
+    </div>
+
+    <div class="gap">
+      <span class="num">GAP 03</span>
+      <h4>Zero Video &mdash; For A Showing Business</h4>
+      <div class="gap-grid">
+        <div><span class="lbl">What you have</span><span class="val">No GBP video, no YouTube channel, no social Reels of any kind</span></div>
+        <div><span class="lbl">What competitors have</span><span class="val">Reels of bar setups, signature cocktail pours, event highlights</span></div>
+      </div>
+      <p class="why"><strong>Why it matters:</strong> Cocktails, bar setups, the "vibe" you create &mdash; these are <em>visual</em> products. A 15-second pour reel sells what static photos can't. For a premium-priced service, the absence of motion silently undersells the experience.</p>
+    </div>
+
+    <div class="plan">
+      <h3>The Plan &mdash; 3 Steps</h3>
+      <div class="plan-steps">
+        <div class="plan-step done">
+          <div class="step-num">01</div>
+          <div class="step-name">We Audit ✓</div>
+          <p class="step-desc">Your visibility scored across 6 categories &mdash; complete (this report)</p>
+        </div>
+        <div class="plan-step now">
+          <div class="step-num">02</div>
+          <div class="step-name">We Reveal</div>
+          <p class="step-desc">We walk you through exactly what's broken, why it matters, and what fixing it costs</p>
+        </div>
+        <div class="plan-step">
+          <div class="step-num">03</div>
+          <div class="step-name">We Build &amp; Maintain</div>
+          <p class="step-desc">Full visibility build, then ongoing monthly cadence to keep you ahead</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — CTA -->
+<section class="cta-block">
+  <div class="wrap">
+    <p class="cta-eyebrow">Recommended Program</p>
+    <h2 class="cta-belt">Black Belt Visibility Program</h2>
+    <p class="cta-desc">From-zero presence build across every Tier 1 + 2 listing, full GBP optimization, complete structured-data deployment, 45+ shot media library tuned to mobile bartending, and ongoing monthly content cadence. <strong style="color:#fff">In 90 days, you go from invisible to top-3 for "wedding bartender Kansas City."</strong></p>
+    <a href="https://links.ninja360.net/widget/booking/free-visibility-audit" class="cta-btn">Book Your Strategy Call</a>
+    <p class="cta-phone">Or call <a href="tel:+18443606465">844-360-NINJA</a> &nbsp;(844-360-6465)</p>
+  </div>
+</section>
+
+<footer class="report-foot">
+  <p class="wordmark"><span class="n">N</span>INJA-360</p>
+  <p class="tag">LOCAL VISIBILITY SYSTEM</p>
+  <p class="legal">&copy; 2026 Ninja-360 Digital Media LLC &nbsp;·&nbsp; Kansas City, MO &nbsp;·&nbsp; Internal report &mdash; not for public distribution</p>
+</footer>
+
+</body>
+</html>
